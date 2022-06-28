@@ -73,7 +73,7 @@ export default function LetterForm(props: LetterFormProps) {
       });
       await patchLetter(letterInfo._id, reqBody);
     }
-    navigate("/Happhee/SOPT-WEB_SECRET_MAILBOX/");
+    navigate("/");
   };
 
   const fillInputValue = (ref: HTMLInputElement) => {

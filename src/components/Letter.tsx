@@ -21,7 +21,7 @@ export default function Letter(props: LetterProps) {
     setChoiceLetter({ hint, password });
   };
   const handleEditButton = () => {
-    navigate("/Happhee/SOPT-WEB_SECRET_MAILBOX/edit", { state: letterInfo });
+    navigate("/edit", { state: letterInfo });
   };
 
   return (

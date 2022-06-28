@@ -1,10 +1,10 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import { createGlobalStyle, ThemeProvider } from 'styled-components';
-import { reset } from 'styled-reset';
-
-import App from './App';
-import theme from './styles/theme';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { createGlobalStyle, ThemeProvider } from "styled-components";
+import { reset } from "styled-reset";
+import { BrowserRouter } from "react-router-dom";
+import App from "./App";
+import theme from "./styles/theme";
 export const GlobalStyle = createGlobalStyle`
   ${reset}
 
@@ -51,14 +51,18 @@ export const GlobalStyle = createGlobalStyle`
   }
 `;
 
-const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
+const root = ReactDOM.createRoot(
+  document.getElementById("root") as HTMLElement
+);
 root.render(
   <React.StrictMode>
-    <ThemeProvider theme={theme}>
-      <GlobalStyle />
-      <App />
-    </ThemeProvider>
-  </React.StrictMode>,
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        <App />
+      </ThemeProvider>
+    </BrowserRouter>
+  </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function
