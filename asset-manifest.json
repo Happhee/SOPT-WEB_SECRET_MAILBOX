@@ -1,11 +1,11 @@
 {
   "files": {
-    "main.js": "/Happhee/SOPT-WEB_SECRET_MAILBOX/static/js/main.43514ad7.js",
+    "main.js": "/Happhee/SOPT-WEB_SECRET_MAILBOX/static/js/main.4788a581.js",
     "static/media/lock.png": "/Happhee/SOPT-WEB_SECRET_MAILBOX/static/media/lock.d009ed9134b79956722d.png",
     "index.html": "/Happhee/SOPT-WEB_SECRET_MAILBOX/index.html",
-    "main.43514ad7.js.map": "/Happhee/SOPT-WEB_SECRET_MAILBOX/static/js/main.43514ad7.js.map"
+    "main.4788a581.js.map": "/Happhee/SOPT-WEB_SECRET_MAILBOX/static/js/main.4788a581.js.map"
   },
   "entrypoints": [
-    "static/js/main.43514ad7.js"
+    "static/js/main.4788a581.js"
   ]
 }
