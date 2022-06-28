@@ -1,0 +1,11 @@
+{
+  "files": {
+    "main.js": "/Happhee/SOPT-WEB_SECRET_MAILBOX/static/js/main.ff903f29.js",
+    "static/media/lock.png": "/Happhee/SOPT-WEB_SECRET_MAILBOX/static/media/lock.d009ed9134b79956722d.png",
+    "index.html": "/Happhee/SOPT-WEB_SECRET_MAILBOX/index.html",
+    "main.ff903f29.js.map": "/Happhee/SOPT-WEB_SECRET_MAILBOX/static/js/main.ff903f29.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.ff903f29.js"
+  ]
+}
