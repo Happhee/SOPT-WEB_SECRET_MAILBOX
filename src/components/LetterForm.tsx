@@ -1,26 +1,26 @@
-import React, { useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
+import React, { useRef } from "react";
+import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
 
-import { LetterFormProps, PatchBody } from '../utils/dataType';
-import { patchLetter, postLetter } from '../utils/lib/api';
+import { LetterFormProps, PatchBody } from "../utils/dataType";
+import { patchLetter, postLetter } from "../utils/lib/api";
 const letterInfoList = [
-  { label: '이름', id: 'name', placeholder: '이름이 뭐에요?' },
+  { label: "이름", id: "name", placeholder: "이름이 뭐에요?" },
   {
-    label: '내용',
-    id: 'content',
-    placeholder: '무슨 내용의 편지를 써볼까요?',
+    label: "내용",
+    id: "content",
+    placeholder: "무슨 내용의 편지를 써볼까요?",
   },
   {
-    label: '비밀번호',
-    id: 'password',
-    placeholder: '비밀번호를 통해 편지를 잠궈보아요.',
-    type: 'password',
+    label: "비밀번호",
+    id: "password",
+    placeholder: "비밀번호를 통해 편지를 잠궈보아요.",
+    type: "password",
   },
   {
-    label: '비밀번호 힌트',
-    id: 'hint',
-    placeholder: '누군가 내 비밀편지를 보도록 비밀번호 힌트를 주세요.',
+    label: "비밀번호 힌트",
+    id: "hint",
+    placeholder: "누군가 내 비밀편지를 보도록 비밀번호 힌트를 주세요.",
   },
 ];
 export default function LetterForm(props: LetterFormProps) {
@@ -28,45 +28,62 @@ export default function LetterForm(props: LetterFormProps) {
 
   const navigate = useNavigate();
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const handleSubmit = async (e: React.FormEvent<HTMLInputElement | HTMLFormElement>) => {
+  const handleSubmit = async (
+    e: React.FormEvent<HTMLInputElement | HTMLFormElement>
+  ) => {
     e.preventDefault();
     const target = e.target as HTMLInputElement;
     const formData = new FormData();
 
     if (!letterInfo) {
       Array.from(target.childNodes).forEach((input) => {
-        Array.from(input.childNodes).forEach((node: ChildNode | HTMLInputElement) => {
-          if (node.nodeName === 'INPUT' && node instanceof HTMLInputElement) {
-            if (node.type === 'file' && node.files) {
-              Array.from(node.files).forEach((file) => {
-                formData.append(node.id, file);
-              });
-            } else {
-              formData.append(node.id, node.value);
+        Array.from(input.childNodes).forEach(
+          (node: ChildNode | HTMLInputElement) => {
+            if (node.nodeName === "INPUT" && node instanceof HTMLInputElement) {
+              if (node.type === "file" && node.files) {
+                Array.from(node.files).forEach((file) => {
+                  formData.append(node.id, file);
+                });
+              } else {
+                formData.append(node.id, node.value);
+              }
             }
           }
-        });
+        );
       });
       await postLetter(formData);
     } else {
       const reqBody: PatchBody = {};
       Array.from(target.childNodes).forEach((input) => {
-        Array.from(input.childNodes).forEach((node: ChildNode | HTMLInputElement) => {
-          if (node.nodeName === 'INPUT' && node instanceof HTMLInputElement) {
-            if (node.id === 'name' || node.id === 'hint' || node.id === 'password' || node.id === 'content') {
-              if (letterInfo[node.id] !== node.value) reqBody[node.id] = node.value;
+        Array.from(input.childNodes).forEach(
+          (node: ChildNode | HTMLInputElement) => {
+            if (node.nodeName === "INPUT" && node instanceof HTMLInputElement) {
+              if (
+                node.id === "name" ||
+                node.id === "hint" ||
+                node.id === "password" ||
+                node.id === "content"
+              ) {
+                if (letterInfo[node.id] !== node.value)
+                  reqBody[node.id] = node.value;
+              }
             }
           }
-        });
+        );
       });
       await patchLetter(letterInfo._id, reqBody);
     }
-    navigate('/');
+    navigate("/Happhee/SOPT-WEB_SECRET_MAILBOX/");
   };
 
   const fillInputValue = (ref: HTMLInputElement) => {
     if (ref && letterInfo) {
-      if (ref.id === 'name' || ref.id === 'content' || ref.id === 'hint' || ref.id === 'password')
+      if (
+        ref.id === "name" ||
+        ref.id === "content" ||
+        ref.id === "hint" ||
+        ref.id === "password"
+      )
         ref.value = letterInfo[ref.id];
     }
   };
@@ -76,7 +93,12 @@ export default function LetterForm(props: LetterFormProps) {
       {letterInfoList.map(({ label, id, placeholder, type }) => (
         <StInputWrapper key={id}>
           <label htmlFor={id}>{label}</label>
-          <input type={type || 'text'} placeholder={placeholder} id={id} ref={fillInputValue} />
+          <input
+            type={type || "text"}
+            placeholder={placeholder}
+            id={id}
+            ref={fillInputValue}
+          />
         </StInputWrapper>
       ))}
 
@@ -87,14 +109,24 @@ export default function LetterForm(props: LetterFormProps) {
             onClick={(e) => {
               e.preventDefault();
               fileInputRef.current && fileInputRef.current.click();
-            }}>
+            }}
+          >
             이미지 업로드 (jpg, jpeg, png)
           </StFileSubmitButton>
-          <input type="file" accept="image/*" id="images" multiple ref={fileInputRef} style={{ display: 'none' }} />
+          <input
+            type="file"
+            accept="image/*"
+            id="images"
+            multiple
+            ref={fileInputRef}
+            style={{ display: "none" }}
+          />
         </StInputWrapper>
       )}
 
-      <StSubmitButton type="submit">{letterInfo ? '몰래 수정하기' : '비밀편지 보내기'}</StSubmitButton>
+      <StSubmitButton type="submit">
+        {letterInfo ? "몰래 수정하기" : "비밀편지 보내기"}
+      </StSubmitButton>
     </StLetterFrom>
   );
 }

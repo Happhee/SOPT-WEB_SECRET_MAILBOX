@@ -1,10 +1,10 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router';
-import styled from 'styled-components';
+import { useState } from "react";
+import { useNavigate } from "react-router";
+import styled from "styled-components";
 
-import lock from '../assets/lock.png';
-import { LetterInfo, LetterProps } from '../utils/dataType';
-import Modal from './Modal';
+import lock from "../assets/lock.png";
+import { LetterInfo, LetterProps } from "../utils/dataType";
+import Modal from "./Modal";
 
 export default function Letter(props: LetterProps) {
   const { letterInfo } = props;
@@ -12,7 +12,8 @@ export default function Letter(props: LetterProps) {
 
   const [isLocked, setIsLocked] = useState<boolean>(true);
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [choiceLetter, setChoiceLetter] = useState<Pick<LetterInfo, 'hint' | 'password'>>();
+  const [choiceLetter, setChoiceLetter] =
+    useState<Pick<LetterInfo, "hint" | "password">>();
   const navigate = useNavigate();
 
   const handleLockButton = () => {
@@ -20,7 +21,7 @@ export default function Letter(props: LetterProps) {
     setChoiceLetter({ hint, password });
   };
   const handleEditButton = () => {
-    navigate('/edit', { state: letterInfo });
+    navigate("/Happhee/SOPT-WEB_SECRET_MAILBOX/edit", { state: letterInfo });
   };
 
   return (

@@ -1,10 +1,12 @@
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
+import { Link } from "react-router-dom";
+import styled from "styled-components";
 export default function LetterHeader() {
   return (
     <>
       <h1>WEB SECRET MAILBOX</h1>
-      <StLetterLink to="/write">Write</StLetterLink>
+      <StLetterLink to="/Happhee/SOPT-WEB_SECRET_MAILBOX/write">
+        Write
+      </StLetterLink>
     </>
   );
 }
